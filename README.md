@@ -14,7 +14,7 @@ Esquecer as senhas acontece com os melhores de nós. Se você esquecer ou perder
 
 Este tutorial mostrará como redefinir a senha root para versões mais antigas e mais recentes do MySQL e MariaDB.
   
-1º Identificando a versão do banco de dados:
+#### 1º Identificando a versão do banco de dados:
   
 A maioria das distribuições modernas de Linux são fornecidas com o MySQL ou o MariaDB, um popular substituto drop-in que é totalmente compatível com o MySQL. Dependendo do banco de dados usado e de sua versão, você precisará usar comandos diferentes para recuperar a senha root.
 
@@ -34,7 +34,7 @@ mysql  Ver 15.1 Distrib 5.5.52-MariaDB, for Linux (x86_64) using readline 5.1
 
 Anote qual banco de dados e qual versão você está executando, como você os usará mais tarde. Em seguida, você precisa interromper o banco de dados para acessá-lo manualmente.
 
-2º Parando o servidor de banco de dados
+#### 2º Parando o servidor de banco de dados
 
 Para alterar a senha root, você deve desligar o servidor de banco de dados antecipadamente.
 
@@ -48,7 +48,8 @@ $> sudo systemctl stop mariadb
 
 Depois que o servidor de banco de dados for parado, você o acessará manualmente para redefinir a senha root.
 
-Etapa 3 - Reiniciando o servidor de banco de dados sem verificação de permissão
+#### 3º Reiniciando o servidor de banco de dados sem verificação de permissão
+
 Se você executar o MySQL e o MariaDB sem carregar informações sobre os privilégios do usuário, ele permitirá que você acesse a linha de comando do banco de dados com privilégios de root, sem fornecer uma senha. Isso permitirá que você obtenha acesso ao banco de dados sem saber.
 
 Para fazer isso, é necessário parar o banco de dados de carregar as tabelas de concessão , que armazenam informações sobre privilégios do usuário. Como esse é um risco à segurança, você também deve pular a rede também para impedir que outros clientes se conectem.
@@ -73,12 +74,13 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 MariaDB [(none)]>
 Agora que você tem acesso root, pode alterar a senha root.
 
-Etapa 4 - Alterando a senha root
+#### 4º Alterando a senha root
 Uma maneira simples de alterar a senha raiz das versões modernas do MySQL é usando o ALTER USERcomando No entanto, este comando não funcionará no momento porque as tabelas de concessão não estão carregadas.
 
 Vamos dizer ao servidor de banco de dados para recarregar as tabelas de concessão emitindo o FLUSH PRIVILEGEScomando
 
 FLUSH PRIVILEGES;
+
 Agora podemos alterar a senha do root.
 
 Para o MySQL 5.7.6 e mais recente , bem como o MariaDB 10.1.20 e mais recente , use o seguinte comando.
@@ -100,15 +102,18 @@ Output
 Query OK, 0 rows affected (0.00 sec)
 A senha foi alterada; portanto, agora você pode parar a instância manual do servidor de banco de dados e reiniciá-la como antes.
 
-Etapa 5 - Reinicie o servidor de banco de dados normalmente
+#### 5º Reinicie o servidor de banco de dados normalmente
+
 Primeiro, pare a instância do servidor de banco de dados que você iniciou manualmente na Etapa 3. Este comando procura o PID ou ID do processo MySQL ou MariaDB e envia SIGTERMpara solicitar que ele saia sem problemas após executar operações de limpeza. Você pode aprender mais neste tutorial de gerenciamento de processos do Linux .
 
 Para o MySQL, use:
 
 $> sudo kill `cat /var/run/mysqld/mysqld.pid`
+
 Para MariaDB, use:
 
 $> sudo kill `/var/run/mariadb/mariadb.pid`
+
 Em seguida, reinicie o serviço usando systemctl.
 
 Para o MySQL, use:
@@ -117,12 +122,15 @@ $> sudo systemctl start mysql
 Para MariaDB, use:
 
 sudo systemctl start mariadb
+
 Agora você pode confirmar que a nova senha foi aplicada corretamente executando:
 
 $> mysql -u root -p
+
 O comando agora deve solicitar a senha recém-atribuída. Digite-o e você deverá obter acesso ao prompt do banco de dados conforme o esperado.
 
 Conclusão
+
 Agora você tem acesso administrativo ao servidor MySQL ou MariaDB restaurado. Verifique se a nova senha root que você escolhe é forte e segura e mantenha-a em local seguro.
   
 
