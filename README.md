@@ -113,7 +113,7 @@ A senha foi alterada; portanto, agora você pode parar a instância manual do se
 
 Primeiro, pare a instância do servidor de banco de dados que você iniciou manualmente na Etapa 3. Este comando procura o PID ou ID do processo MySQL ou MariaDB e envia SIGTERMpara solicitar que ele saia sem problemas após executar operações de limpeza. Você pode aprender mais neste tutorial de gerenciamento de processos do Linux .
 
-Para o MySQL, use:
+**Para o MySQL, use:**
 
 > $ sudo kill `cat /var/run/mysqld/mysqld.pid`
 
