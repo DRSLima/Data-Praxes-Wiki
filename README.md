@@ -133,6 +133,8 @@ Conclusão
 
 Agora você tem acesso administrativo ao servidor MySQL ou MariaDB restaurado. Verifique se a nova senha root que você escolhe é forte e segura e mantenha-a em local seguro.
   
-
+###### Fonte: https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password
+###### Colaborador: Mateusz Papiernik
+###### Replicador do conhecimento: Danilo Lima
 
 
