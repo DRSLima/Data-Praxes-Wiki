@@ -147,3 +147,5 @@ Agora você tem acesso administrativo ao servidor MySQL ou MariaDB restaurado. V
 ###### Replicador do conhecimento: Danilo Lima
 
 
+## Próximo tópico: [Análise de Dados](/docs/sumario.text)
+
